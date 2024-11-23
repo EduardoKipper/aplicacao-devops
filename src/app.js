@@ -36,6 +36,8 @@ const data = {
     ]
 };
 
+console.log("teste")
+
 //metodo chamar integrantes
 app.get('/integrantes', (req, res) => {
     res.json(data);
