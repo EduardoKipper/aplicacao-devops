@@ -15,9 +15,10 @@ app.use(express.json());
 const PORT = process.env.PORT;
 
 //connect mongodb
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('Connected to MongoDB Atlas'))
   .catch(err => console.error('Could not connect to MongoDB Atlas', err));
+
 
 //retorna pagina inicial
 app.get('/', (req, res) => {
@@ -157,9 +158,9 @@ app.delete('/user/:userId', async (req, res) => {
 
 // Inicia o servidor na porta especificada
 if (require.main === module) {
-    app.listen(PORT, '0.0.0.0', () => {
+    app.listen(PORT, () => {
         console.log(`Servidor rodando na porta ${PORT}`);
-    });
+      });
 }
 
 module.exports = app; // Exporta o aplicativo
